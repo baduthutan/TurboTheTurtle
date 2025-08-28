@@ -24,7 +24,7 @@ public class LightController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O) && lightComponent != null)
         {
             lightComponent.enabled = !lightComponent.enabled;
-            if(isRoot) SetMaterialsEmission(lightComponent.enabled);
+            if (isRoot) SetMaterialsEmission(lightComponent.enabled);
         }
     }
 
@@ -44,5 +44,9 @@ public class LightController : MonoBehaviour
                 }
             }
         }
+    }
+    void OnDestroy()
+    {
+        foreach (var mat in materials) mat.EnableKeyword("_EMISSION");
     }
 }
